@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chnage element by id</title>
+</head>
+
+<body>
+
+    <h1>Hello <span id="number">1</span></h1>
+
+
+    <script>
+        // used to get element printed in console 
+        console.log(document.getElementById("number").innerHTML)
+        // used to change dom text 
+        document.getElementById("number").innerHTML = 10;
+        console.log(document.getElementById("number").innerHTML)
+    </script>
+</body>
+
+</html>
