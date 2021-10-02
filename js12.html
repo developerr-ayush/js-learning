@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form Validation</title>
+</head>
+<style>
+   
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+}
+html{
+    font-size: 15px;
+}
+.container{
+    width: 100%;
+    background-image: url('../img/bg.jpg');
+    background-color: blue;
+    /* background-color: rgba(0,0,0,.5); */
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: darken;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.form{
+    width: 100%;
+    max-width: 600px;
+    margin: 5%;
+    background-color: rgba(255,255,255,.4);
+    padding: 3rem;
+    color: #fff;
+    border-radius: 10px;
+}
+.form h2{
+    font-size: 2rem;
+    margin-bottom: .5rem;
+    text-align: center;
+}
+.form lable{
+    font-size: 1.6rem;
+    font-weight: 800;
+  
+  
+}
+.form input{
+    width: 100%;
+    background-color: rgba(255,255,255,.2);
+    border-top: 1px solid rgba(255,255,255,.5);
+    border-left: 1px solid rgba(255,255,255,.5);
+    border-bottom: 0;
+    border-right: 0;
+    padding: 1rem;
+    margin: .7rem 0;
+    border-radius: 3px;
+    color: #fff;
+}
+#Dob input{
+    background-color: rgba(255,255,255,.6);
+}
+.form input::placeholder{
+    color: #fff;
+}
+.form #button{
+    background-color: rgba(255,255,255,.7);
+    color: black;
+}
+.form .error{
+    color: cyan;
+    font-weight: 600;
+}
+
+
+
+@media(max-width:768px){
+   html{
+       font-size: 12px;
+   }
+   
+  
+}
+
+</style>
+<body>
+
+  
+    <div class="container">
+        <div class="form">
+            <form name="signup" action="abc.php" method="post" onsubmit="return FormValidation()">
+                <h2>SIGN UP NOW</h2>
+                <div class="formdesign" id="FirstName">
+                    <label>First Name:<span class="error"></span></label>
+                    <input type="text" name="FirstName"  placeholder="First Name"  />
+                    
+                </div>
+                <div class="formdesign" id="LastName">
+                    <label>Last Name:<span class="error"></span></label>
+                    <input type="text" name="LastName"  placeholder="Last Name"  />
+                    
+                </div>
+                <div class="formdesign" id="Email">
+                    <label>Email: <span class="error"></span></label>
+                    <input type="email" name="email"  placeholder="E-mail"   />
+                   
+                </div>
+                 <div class="formdesign" id="Dob">
+                    <label>Date Of Birth:  <span class="error"></span>  </label>
+                    <input type="date" name="date" max="2003-01-01"/>
+                    
+                </div>
+                <div class="formdesign" id="Age">
+                    <label>Age:<span class="error"></span></label>
+                    <input type="number" name="Age"  placeholder="Age"  />
+                    
+                </div>
+                
+                 <div class="formdesign" id="number">
+                     <label>Mobile No: <span class="error"></span></label>
+                    <input type="number" name="number"  placeholder="Mobile Number"  />
+                   
+                </div>
+                 <div class="formdesign" id="pass" > 
+                     <label>Password:<span class="error"></span></label>
+                    <input type="password" name="pass" placeholder="Enter Password"  />
+                    
+                </div>
+                <div class="formdesign" id="cpass" >
+                    <label>Comfirm Password:<span class="error"></span></label>
+                    <input type="password" name="cpass" placeholder="Comfirm Password"  />
+                    
+                </div>
+       
+                <input type="submit" id="button" value="Sign Up" />
+            </form>
+        </div>
+        
+    </div>
+
+
+    <script>
+
+        //clear when input is correct
+
+        function clearErrors() {
+
+            errors = document.getElementsByClassName('error');
+            for (let item of errors) {
+                item.innerHTML = "";
+            }
+        }
+
+        function error(id, error) {
+            element = document.getElementById(id);
+            element.getElementsByClassName('error')[0].innerHTML = error;
+
+        }
+
+
+
+
+        function FormValidation() {
+
+            var returnValue = true;
+            clearErrors();
+
+            //validation for first name
+            var fname = document.forms["signup"]["FirstName"].value;
+            var alpha = /^[a-zA-Z]+$/;
+
+            if (!(fname.match(alpha))) {
+                error("FirstName", "*First Name should have alphabets without space!");
+                returnValue = false;
+            }
+            if (fname.length < 5) {
+                error("FirstName", "*First Name should have minimum 5 letters!");
+                returnValue = false;
+            }
+            if (fname.length > 20) {
+                error("FirstName", "*First Name should have maximum 20 letters!");
+                returnValue = false;
+            }
+            //validation for last name
+            var lname = document.forms["signup"]["LastName"].value;
+            if (!(lname.match(alpha))) {
+                error("LastName", "*First Name should have alphabets without space!");
+                returnValue = false;
+            }
+            if (lname.length < 5) {
+                error("LastName", "*last Name should have minimum 5 letters !");
+                returnValue = false;
+            }
+            if (lname.length > 20) {
+                error("LastName", "*last Name should have maximum 20 letters!");
+                returnValue = false;
+            }
+
+            //validation for email
+            var email = document.forms["signup"]["email"].value;
+            if (email == "") {
+                error("Email", "*Email cannot be empty!");
+                returnValue = false;
+            }
+
+            if (email.length > 40) {
+                error("Email", "*Email length is too long!");
+                returnValue = false;
+            }
+
+            //validation for date of birth
+
+            var date = document.forms["signup"]["date"].value;
+            if (date = "") {
+                error("Email", "*date of birth cannot be empty!");
+                returnValue = false;
+            }
+
+            // validation for age
+            var age = document.forms["signup"]["Age"].value;
+            if (age < 18) {
+                error("Age", "*your age must be above 18!");
+                returnValue = false;;
+            }
+
+
+            //validation for mobile number number
+            var num = document.forms["signup"]["number"].value;
+            if (num.length != 10) {
+                error("number", "*number must be of 10 digit!");
+                returnValue = false;
+            }
+
+            //validation for pssword and comfirm password
+            var pass = document.forms["signup"]["pass"].value;
+            if (pass.length <= 8) {
+                error("pass", "*password must be atleast 8 character!");
+                returnValue = false;
+            }
+
+            var cpass = document.forms["signup"]["cpass"].value;
+
+            if (cpass != pass) {
+                error("cpass", "*confirm password must be same as password!");
+                returnValue = false;
+            }
+            return returnValue;
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>

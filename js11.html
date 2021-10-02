@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dom manupulation</title>
+</head>
+<body>
+    <h1 id="heading-one">
+        ayush shah
+
+    </h1>
+    <p class="para">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, ipsa.
+    </p>
+
+    <form action="#">
+        <input type="text" id="name">
+        <button onclick="name1();">submit</button>
+    </form>
+
+    <script>
+        // get elements from dom 
+        let head = document.getElementById("heading-one").innerHTML;
+        console.log(head);
+        // get elements by class . 
+        let para = document.querySelector(".para").innerHTML 
+        console.log(para);
+        // change value 
+        para = document.querySelector(".para").innerHTML = "changes para";
+        console.log(para);
+
+
+        function name1() {
+            let name = document.getElementById("name").value;
+
+            document.write("your name is " + name);
+        }
+
+
+    </script>
+</body>
+</html>
